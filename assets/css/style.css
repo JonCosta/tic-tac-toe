@@ -1,0 +1,16 @@
+body {
+  background-color: #0f0f0f; }
+
+.block {
+  background-color: tomato;
+  border-bottom: 1px solid #e02200;
+  padding: 5px 10px;
+  height: 150px;
+  text-align: center; }
+  .block.middle {
+    border-left: 1px solid #e02200;
+    border-right: 1px solid #e02200; }
+  .block:nth-last-child(-n+3) {
+    border-bottom: none; }
+
+/*# sourceMappingURL=style.css.map */
