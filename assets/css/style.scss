@@ -1,0 +1,25 @@
+$color-bg: #0f0f0f;
+$color-block: tomato;
+$color-font: white;
+$border-set: 1px solid darken($color-block, 20%);
+
+body {
+    background-color: $color-bg;
+}
+
+.block {
+    background-color: $color-block;
+    border-bottom: $border-set;
+    padding: 5px 10px;
+    height: 150px;
+    text-align: center;
+
+    &.middle {
+        border-left: $border-set;
+        border-right: $border-set;
+    }
+
+    &:nth-last-child(-n+3) {
+        border-bottom: none;        
+    }
+}
