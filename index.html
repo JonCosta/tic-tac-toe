@@ -15,25 +15,40 @@
 
     <div class="container">
         <div class="jumbotron jumbo">
-
-            <div class="row jumbo__row">
-                <div class="col-md-4 col-xs-4 col-lg-4 block" data-block="1"></div>
-                <div class="col-md-4 col-xs-4 col-lg-4 block middle" data-block="2"></div>
-                <div class="col-md-4 col-xs-4 col-lg-4 block" data-block="3"></div>
-                <div class="col-md-4 col-xs-4 col-lg-4 block" data-block="4"></div>
-                <div class="col-md-4 col-xs-4 col-lg-4 block middle" data-block="5"></div>
-                <div class="col-md-4 col-xs-4 col-lg-4 block" data-block="6"></div>
-                <div class="col-md-4 col-xs-4 col-lg-4 block" data-block="7"></div>
-                <div class="col-md-4 col-xs-4 col-lg-4 block middle" data-block="8"></div>
-                <div class="col-md-4 col-xs-4 col-lg-4 block" data-block="9"></div>
+            <h1>A Tic, a Tac and a Toe</h1>
+            
+            <div class="chooseASide">
+                <h3>Choose your icon</h3>
+                <button class="btn btn-warning btnSideChoice" data-choice="X">X</button>
+                <button class="btn btn-warning btnSideChoice" data-choice="O">O</button>
             </div>
+            
+            <table>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <h2 class="endGameMessage"></h2>
 
         </div>
     </div>
 
 
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 
