@@ -38,7 +38,7 @@ tr td:first-child {
 tr td:last-child {
   border-right: 0; }
 
-.endGameMessage {
+.endGame {
   display: none; }
 
 /*# sourceMappingURL=style.css.map */
