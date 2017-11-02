@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,48 +9,55 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-
 <body>
-
+    
     <div class="container">
-        <div class="jumbotron jumbo">
-            <h1>A Tic, a Tac and a Toe</h1>
-            
-            <div class="chooseASide">
-                <h3>Choose your icon</h3>
-                <button class="btn btn-warning btnSideChoice" data-choice="X">X</button>
-                <button class="btn btn-warning btnSideChoice" data-choice="O">O</button>
-            </div>
-            
-            <table>
+        <div class="b-titles">
+            <h1 class="titles--main">Tic Tac Toe</h1>
+            <h2 class="titles--sub">Welcome, ladies and gentleman! First things first, choose your icon!</h2>
+        </div>
+
+        <div class="b-choice">
+            <button class="btn choice--btn" data-choice="X">
+                <i class="fa fa-times"></i>
+            </button>
+            <button class="btn choice--btn" data-choice="O">
+                <i class="fa fa-circle-o"></i>
+            </button>
+        </div>
+        
+        <div class="b-game">
+            <table class="game--table">
                 <tr>
-                    <td class="square0"></td>
-                    <td class="square1"></td>
-                    <td class="square2"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td class="square3"></td>
-                    <td class="square4"></td>
-                    <td class="square5"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td class="square6"></td>
-                    <td class="square7"></td>
-                    <td class="square8"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </table>
-
-            <div class="endGame">
-                <h2 class="endGameMessage"></h2>
-                <button class="btn btn-success btnRestart">Restart</button>
-            </div> 
-
         </div>
+
+        <nav class="navbar navbar-default navbar-fixed-bottom b-footer">
+            <div class="container">
+                <p class="navbar-text navbar-middle footer--text">
+                    Made with <i class="fa fa-music"></i> by Jon Costa
+                </p>
+            </div>
+        </nav>
+
     </div>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 
