@@ -1,5 +1,7 @@
 $(function() {
 
+    var x = String.fromCharCode(123);
+
     var Game = {
         
         finished: false,
@@ -9,6 +11,7 @@ $(function() {
         botChoice: '',
         playerMarkedCells: [],
         botMarkedCells: [],
+        // All the possible rows of marked cells that can win a game
         winningRows: [
             [1, 2, 3],
             [4, 5, 6],
@@ -21,48 +24,69 @@ $(function() {
         ],
         remainingRows: [],
     
+        /**
+         * Resets the Game object's main variables to the initial state
+         */
         resetGame: function() {
             console.log("Game reset.");
-            this.botChoice = this.playerChoice = '';
-            this.playerMarkedCells = this.botMarkedCells = [];
-            this.finished = false;
-            this.remainingRows = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            Game.botChoice = '';
+            Game.playerChoice = '';
+            Game.playerMarkedCells = [];
+            Game.botMarkedCells = [];
+            Game.finished = false;
+            Game.remainingRows = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         },
     
+        /**
+         * Receives an array of marked cell numbers and verifies if it contains a winning row
+         * Can be used either for player and bot moves
+         */
         checkIfGameOver: function(choiceArray) {
             console.log("Checking if game is over.");
+            // Prevents from going further if the array has less than 3 marked cells
             if (choiceArray.length < 3) return false;
+            // Runs through all the winning rows, with possible cell numbers for a victory
             for (let i = 0; i < Game.winningRows.length; i++) {
                 let row = Game.winningRows[i];
                 for (let j = 0; j < row.length; j++) {
+                    Game.finished = true;
+                    // Checks if all elements of the winning row are in the marked cells array
                     if (choiceArray.indexOf(row[j]) < 0) {
-                        console.log("Not found");
+                        Game.finished = false;
                         break;
                     }
-                    Game.finished = true;
+                }
+                // If the finished check wasn't changed during the loop, it means the chosen array has a winning row
+                if (Game.finished) {
                     console.log("Victory!");
-                    // Victory!
+                    return false;
                 }
             }
             // If no winners, check for draw
-            if (Game.playerMarkedCells.length + Game.botMarkedCells.length == 9) {
-                    
+            if (Game.playerMarkedCells.length + Game.botMarkedCells.length == 9 && !Game.finished) {
+                console.log("It's a draw!");
+                Game.finished = true;
             }
         },
     
+        /**
+         * Function to simulate the bot player move
+         */
         botPlay: function() {
-            let cell = this.remainingRows[Math.floor(Math.random() * this.remainingRows.length)];
-            $('[data-cell="'+cell+'"]').html(this.botChoice);
-            this.botMarkedCells.push(cell);
-            let index = this.remainingRows.indexOf(cell);
-            this.remainingRows.splice(index, 1);
-            this.checkIfGameOver(this.botMarkedCells);
+            // Chooses a random position of the game cells that haven't been chosen yet
+            let cell = Game.remainingRows[Math.floor(Math.random() * Game.remainingRows.length)];
+            $('[data-cell="'+cell+'"]').html(Game.botChoice);
+            Game.botMarkedCells.push(cell);
+            // Removes the chosen cell from the array of remaining
+            let index = Game.remainingRows.indexOf(cell);
+            Game.remainingRows.splice(index, 1);
+            Game.checkIfGameOver(Game.botMarkedCells);
         }
     
     };
 
+    // Resets the game once the page loads and shows the choice section
     Game.resetGame();
-
     $('.b-choice').fadeIn();
 
     $('.choice--btn').click(function(e) {
@@ -73,6 +97,7 @@ $(function() {
         Game.botChoice = side == 'X' ? Game.iconO : Game.iconX;
         $('.b-choice').fadeOut();
         $('.b-game').fadeIn();
+        $('.b-reset').fadeIn();
     });
 
     $('.game--table td').click(function(e) {
@@ -91,5 +116,15 @@ $(function() {
         // Bot make a move
         if (!Game.finished) Game.botPlay();
     });
+
+    // Reset Button -> Clears all game variables and shows the choice section again
+    $('.reset--btn').click(function(e) {
+        e.preventDefault();
+        Game.resetGame();
+        $('.game--table td').html('');
+        $('.b-game').fadeOut();
+        $('.b-choice').fadeIn();
+        $('.reset--btn').fadeOut();
+    })
 
 });
