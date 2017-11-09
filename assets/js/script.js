@@ -100,7 +100,7 @@ $(function() {
         $('.b-reset').fadeIn();
     });
 
-    $('.game--table td').click(function(e) {
+    $('.game--col').click(function(e) {
         // Prevents going further if the game is already finished
         if (Game.finished) return false;
         // Obtains the marked cell's number and adds it to the player's array
@@ -121,10 +121,10 @@ $(function() {
     $('.reset--btn').click(function(e) {
         e.preventDefault();
         Game.resetGame();
-        $('.game--table td').html('');
+        $('.game--col').html('');
         $('.b-game').fadeOut();
         $('.b-choice').fadeIn();
-        $('.reset--btn').fadeOut();
+        $('.b-reset').fadeOut();
     })
 
 });

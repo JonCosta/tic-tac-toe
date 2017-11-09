@@ -1,3 +1,8 @@
+$cell-border = 1px solid #0a0a0a;
+$footer-background = #0a0a0a;
+
+// -----------------------------------------
+
 body {
     padding-bottom: 70px;
 }
@@ -36,50 +41,74 @@ body {
     display: none
 }
 
-.game--table {
-    text-align: center
-    td {
-        border: 1px solid #0a0a0a
-        padding: 50px
-    }
-}
-
 .game--row {
     text-align: center;
 }
 
 .game--col {
-    border: 1px solid blue;
+    // border: 1px solid blue;
     height: 200px;
+    font-size: 10em;
     line-height: 200px;
+
+    @media screen and (max-width: 450px) {
+        height: 140px;
+        line-height: 140px;
+    }
 }
 
-.flex-container {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-
-    -webkit-flex-flow: row wrap;
-    justify-content: space-around;
+.game--col[data-cell="1"] {
+    border-right: $cell-border;
+    border-bottom: $cell-border;
 }
 
-.flex-item {
-    background: tomato;
-    padding: 5px;
-    width: 200px;
-    height: 150px;
-    margin-top: 10px;
-    line-height: 150px;
-    color: white;
-    font-weight: bold;
-    font-size: 3em;
-    text-align: center;
+.game--col[data-cell="2"] {
+    border-left: $cell-border;
+    border-right: $cell-border;
+    border-bottom: $cell-border;
+}
+
+.game--col[data-cell="3"] {
+    border-bottom: $cell-border;
+    border-left: $cell-border;
+}
+
+.game--col[data-cell="4"] {
+    border-bottom: $cell-border;
+    border-right: $cell-border;
+    border-top: $cell-border;
+}
+
+.game--col[data-cell="5"] {
+    border: $cell-border;
+}
+
+.game--col[data-cell="6"] {
+    border-bottom: $cell-border;
+    border-left: $cell-border;
+    border-top: $cell-border;    
+}
+
+.game--col[data-cell="7"] {
+    border-right: $cell-border;
+    border-top: $cell-border;
+}
+.game--col[data-cell="8"] {
+    border-left: $cell-border;
+    border-right: $cell-border;
+    border-top: $cell-border;
+}
+
+.game--col[data-cell="9"] {
+    border-left: $cell-border;
+    border-top: $cell-border;
+}
+
+.game--jumbo {
+    margin: auto;
+    @media screen and (min-width: 800px) {
+        max-width: 60%
+    }
 }
 
 // -----------------------------------------
@@ -90,13 +119,13 @@ body {
 }
 
 .reset--btn {
-    
+    width: 100%;
 }
 
 // -----------------------------------------
 
 .b-footer {
-    background-color: #0a0a0a
+    background-color: $footer-background;
 }
 
 .navbar-text.footer--text {
