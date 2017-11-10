@@ -23,6 +23,7 @@ $(function() {
             [1, 5, 9]
         ],
         remainingRows: [],
+        turn: '',
     
         /**
          * Resets the Game object's main variables to the initial state
@@ -35,6 +36,7 @@ $(function() {
             Game.botMarkedCells = [];
             Game.finished = false;
             Game.remainingRows = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            Game.turn = 'PLAYER';
         },
     
         /**
@@ -43,8 +45,6 @@ $(function() {
          */
         checkIfGameOver: function(choiceArray) {
             console.log("Checking if game is over.");
-            // Prevents from going further if the array has less than 3 marked cells
-            if (choiceArray.length < 3) return false;
             // Runs through all the winning rows, with possible cell numbers for a victory
             for (let i = 0; i < Game.winningRows.length; i++) {
                 let row = Game.winningRows[i];
@@ -58,14 +58,30 @@ $(function() {
                 }
                 // If the finished check wasn't changed during the loop, it means the chosen array has a winning row
                 if (Game.finished) {
-                    console.log("Victory!");
+                    if (Game.turn === 'PLAYER') {
+                        $('.titles--sub').html("Victory! Congratulations, you're awesome!");
+                    } else {
+                        $('.titles--sub').html("The bot won! Now you owe him a cookie.");
+                    }
                     return false;
                 }
             }
+            
             // If no winners, check for draw
             if (Game.playerMarkedCells.length + Game.botMarkedCells.length == 9 && !Game.finished) {
-                console.log("It's a draw!");
+                $('.titles--sub').html("It's a draw! What an amazing match!");
                 Game.finished = true;
+                return false;
+            }
+
+            console.log("Meh");
+            // If the game isn't over, change turn and message
+            if (Game.turn === 'PLAYER') {
+                $('.titles--sub').html("It's the bot's turn... Let him focus.");
+                Game.turn = 'BOT';
+            } else {
+                $('.titles--sub').html("It's your turn. Go wild!");
+                Game.turn = 'PLAYER';
             }
         },
     
@@ -73,14 +89,16 @@ $(function() {
          * Function to simulate the bot player move
          */
         botPlay: function() {
-            // Chooses a random position of the game cells that haven't been chosen yet
-            let cell = Game.remainingRows[Math.floor(Math.random() * Game.remainingRows.length)];
-            $('[data-cell="'+cell+'"]').html(Game.botChoice);
-            Game.botMarkedCells.push(cell);
-            // Removes the chosen cell from the array of remaining
-            let index = Game.remainingRows.indexOf(cell);
-            Game.remainingRows.splice(index, 1);
-            Game.checkIfGameOver(Game.botMarkedCells);
+            setTimeout(function() {
+                // Chooses a random position of the game cells that haven't been chosen yet
+                let cell = Game.remainingRows[Math.floor(Math.random() * Game.remainingRows.length)];
+                $('[data-cell="'+cell+'"]').html(Game.botChoice);
+                Game.botMarkedCells.push(cell);
+                // Removes the chosen cell from the array of remaining
+                let index = Game.remainingRows.indexOf(cell);
+                Game.remainingRows.splice(index, 1);
+                Game.checkIfGameOver(Game.botMarkedCells);
+            }, 1500);
         }
     
     };
@@ -98,6 +116,7 @@ $(function() {
         $('.b-choice').fadeOut();
         $('.b-game').fadeIn();
         $('.b-reset').fadeIn();
+        $('.titles--sub').html('It\'s your turn. Go wild!');
     });
 
     $('.game--col').click(function(e) {

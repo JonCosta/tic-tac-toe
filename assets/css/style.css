@@ -4,6 +4,9 @@ body {
 .b-titles {
   text-align: center;
 }
+.titles--main {
+  font-size: 50px;
+}
 .b-choice {
   display: none;
   text-align: center;
@@ -33,6 +36,7 @@ body {
 }
 @media screen and (max-width: 450px) {
   .game--col {
+    font-size: 7em;
     height: 140px;
     line-height: 140px;
   }
@@ -89,6 +93,8 @@ body {
   text-align: center;
 }
 .reset--btn {
+  font-size: 20px;
+  margin-top: 20px;
   width: 100%;
 }
 .b-footer {
