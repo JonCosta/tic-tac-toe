@@ -1,10 +1,21 @@
-$cell-border = 1px solid #0a0a0a;
-$footer-background = #0a0a0a;
+@import url('https://fonts.googleapis.com/css?family=Bangers');
+
+$border--game-cell = 1px solid $color--table-border;
+$color--table-border = #ffffff;
+$color--game-icon = #ffffff;
+$color--body-background = #f4faff;
+$color--footer-background = #3a2e39;
+$color--jumbo-background = #3a2e39;
+$color--button-o = #f15152;
+$color--button-x = #1e555c;
+$color--button-reset = #e3170a
+$font--titles-main = 'Bangers', cursive;
 
 // -----------------------------------------
 
 body {
-    padding-bottom: 70px;
+    padding-bottom: 70px
+    background-color: $color--body-background
 }
 
 .b-titles {
@@ -12,8 +23,19 @@ body {
 }
 
 .titles--main {
-    font-size: 50px;
+    font-family: $font--titles-main;
+    font-size: 70px;
+    @media screen and (max-width: 450px) {
+        font-size: 45px;
+    }
 }
+
+.titles--sub {
+    @media screen and (max-width: 450px) {
+        font-size: 21px;
+    }
+}
+
 
 // -----------------------------------------
 
@@ -24,19 +46,26 @@ body {
 
 .choice--btn {
     
-    font-size: 100px
+    color: #fff    
+    font-size: 10vh
+    width: 20vw
 
     &[data-choice="X"] {
-        background-color: goldenrod
+        background-color: $color--button-x;
+    }
+    &[data-choice="X"]:hover {
+        background-color: lighten($color--button-x, 10%)
+        color: #fff
     }
 
     &[data-choice="O"] {
-        background-color: salmon
+        background-color: $color--button-o;
+    }
+    &[data-choice="O"]:hover {
+        background-color: lighten($color--button-o, 10%)
+        color: #fff
     }
 
-    &:hover {
-        color: white;
-    }
 }
 
 // -----------------------------------------
@@ -50,70 +79,74 @@ body {
 }
 
 .game--col {
-    // border: 1px solid blue;
-    height: 200px;
-    font-size: 10em;
-    line-height: 200px;
+    color: $color--game-icon;
+    font-size: 5em;
+    height: 15vh;
+    line-height: 15vh;
 
-    @media screen and (max-width: 450px) {
-        font-size: 7em;
-        height: 140px;
-        line-height: 140px;
-        
+    @media screen and (min-width: 600px) {
+        height: 20vh
+        line-height: 20vh
     }
 }
 
 .game--col[data-cell="1"] {
-    border-right: $cell-border;
-    border-bottom: $cell-border;
+    border-right: $border--game-cell;
+    border-bottom: $border--game-cell;
 }
 
 .game--col[data-cell="2"] {
-    border-left: $cell-border;
-    border-right: $cell-border;
-    border-bottom: $cell-border;
+    border-left: $border--game-cell;
+    border-right: $border--game-cell;
+    border-bottom: $border--game-cell;
 }
 
 .game--col[data-cell="3"] {
-    border-bottom: $cell-border;
-    border-left: $cell-border;
+    border-bottom: $border--game-cell;
+    border-left: $border--game-cell;
 }
 
 .game--col[data-cell="4"] {
-    border-bottom: $cell-border;
-    border-right: $cell-border;
-    border-top: $cell-border;
+    border-bottom: $border--game-cell;
+    border-right: $border--game-cell;
+    border-top: $border--game-cell;
 }
 
 .game--col[data-cell="5"] {
-    border: $cell-border;
+    border: $border--game-cell;
 }
 
 .game--col[data-cell="6"] {
-    border-bottom: $cell-border;
-    border-left: $cell-border;
-    border-top: $cell-border;    
+    border-bottom: $border--game-cell;
+    border-left: $border--game-cell;
+    border-top: $border--game-cell;    
 }
 
 .game--col[data-cell="7"] {
-    border-right: $cell-border;
-    border-top: $cell-border;
+    border-right: $border--game-cell;
+    border-top: $border--game-cell;
 }
 .game--col[data-cell="8"] {
-    border-left: $cell-border;
-    border-right: $cell-border;
-    border-top: $cell-border;
+    border-left: $border--game-cell;
+    border-right: $border--game-cell;
+    border-top: $border--game-cell;
 }
 
 .game--col[data-cell="9"] {
-    border-left: $cell-border;
-    border-top: $cell-border;
+    border-left: $border--game-cell;
+    border-top: $border--game-cell;
 }
 
 .game--jumbo {
-    margin: auto;
-    @media screen and (min-width: 800px) {
-        max-width: 60%
+    background-color: $color--jumbo-background;
+    margin: auto
+    max-width: 50%
+    @media screen and (max-width: 800px) {
+        max-width: 80%;
+    }
+
+    @media screen and (max-width: 600px) {
+        max-width: 90%
     }
 }
 
@@ -125,15 +158,22 @@ body {
 }
 
 .reset--btn {
+    background-color: $color--button-reset
+    color: #fff
     font-size: 20px;
     margin-top: 20px;
     width: 100%;
+
+    &:hover {
+        background-color: lighten($color--button-reset, 10%)
+        color: #fff
+    }
 }
 
 // -----------------------------------------
 
 .b-footer {
-    background-color: $footer-background;
+    background-color: $color--footer-background;
 }
 
 .navbar-text.footer--text {

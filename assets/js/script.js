@@ -37,6 +37,7 @@ $(function() {
             Game.finished = false;
             Game.remainingRows = [1, 2, 3, 4, 5, 6, 7, 8, 9];
             Game.turn = 'PLAYER';
+            $('.titles--sub').html('Welcome, ladies and gentleman! First things first, choose your icon!');
         },
     
         /**
@@ -63,6 +64,7 @@ $(function() {
                     } else {
                         $('.titles--sub').html("The bot won! Now you owe him a cookie.");
                     }
+                    $('.b-reset').fadeIn();
                     return false;
                 }
             }
@@ -71,6 +73,7 @@ $(function() {
             if (Game.playerMarkedCells.length + Game.botMarkedCells.length == 9 && !Game.finished) {
                 $('.titles--sub').html("It's a draw! What an amazing match!");
                 Game.finished = true;
+                $('.b-reset').fadeIn();
                 return false;
             }
 
@@ -107,6 +110,14 @@ $(function() {
     Game.resetGame();
     $('.b-choice').fadeIn();
 
+    $('.players--btn').click(function(e) {
+        e.preventDefault();
+        let choice = $(this).data("choice");
+        $('.b-players').fadeOut();
+        $('.b-choice').fadeIn();
+        $('.titles--sub').html('')
+    })
+
     $('.choice--btn').click(function(e) {
         e.preventDefault();
         let side = $(this).data("choice");
@@ -115,13 +126,12 @@ $(function() {
         Game.botChoice = side == 'X' ? Game.iconO : Game.iconX;
         $('.b-choice').fadeOut();
         $('.b-game').fadeIn();
-        $('.b-reset').fadeIn();
         $('.titles--sub').html('It\'s your turn. Go wild!');
     });
 
     $('.game--col').click(function(e) {
-        // Prevents going further if the game is already finished
-        if (Game.finished) return false;
+        // Prevents going further if the game is already finished or if it's the bot's turn
+        if (Game.finished || Game.turn == 'BOT') return false;
         // Obtains the marked cell's number and adds it to the player's array
         let cell = $(this).data('cell');
         Game.playerMarkedCells.push(cell);
